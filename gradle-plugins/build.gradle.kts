@@ -48,7 +48,7 @@ subprojects {
     }
 
     afterEvaluate {
-        publicationConfig?.let { mavenPublicationConfig ->
+        mavenPublicationConfig?.let { mavenPublicationConfig ->
             configurePublication(mavenPublicationConfig)
 
             gradlePluginConfig?.let { gradlePluginConfig ->
@@ -59,7 +59,7 @@ subprojects {
 }
 
 fun Project.configurePublication(
-    publicationConfig: PublicationConfigExtension
+    publicationConfig: MavenPublicationConfigExtension
 ) {
     // maven publication for plugin
     configureIfExists<PublishingExtension> {
@@ -83,7 +83,7 @@ fun Project.configurePublication(
 }
 
 fun Project.configureGradlePlugin(
-    publicationConfig: PublicationConfigExtension,
+    publicationConfig: MavenPublicationConfigExtension,
     gradlePluginConfig: GradlePluginConfigExtension
 ) {
     // metadata for gradle plugin portal (relates to pluginBundle extension block from com.gradle.plugin-publish)
